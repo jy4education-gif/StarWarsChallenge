@@ -1,0 +1,79 @@
+:root {
+    --jedi-blue: #00AEEF;
+    --imperial-white: #ffffff;
+    --droid-grey: #f2f2f2;
+    --dark-text: #2c3e50;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--imperial-white);
+    color: var(--dark-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 2rem;
+}
+
+.glow-text {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--jedi-blue);
+    padding-bottom: 10px;
+}
+
+.jedi-button {
+    background-color: transparent;
+    border: 2px solid var(--jedi-blue);
+    color: var(--jedi-blue);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.jedi-button:hover {
+    background-color: var(--jedi-blue);
+    color: white;
+    box-shadow: 0 0 15px var(--jedi-blue);
+}
+
+#hero {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.character-mentor {
+    height: 300px;
+    transform: scaleX(-1); /* Spiegelt Obi-Wan, falls er nach rechts blickt */
+}
+
+.upload-container {
+    background: var(--droid-grey);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px dashed var(--jedi-blue);
+}
+
+#codeDisplayArea {
+    margin-top: 20px;
+    width: 80vw;
+    max-width: 800px;
+    background: #272822;
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.hidden { display: none; }

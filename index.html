@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarWarsChallenge - Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="forceTheme" src="starwars_theme.m4a" loop></audio>
+
+    <header>
+        <h1 class="glow-text">CODE CHALLENGE</h1>
+        <button id="musicToggle" class="jedi-button">Enter the Temple (Music On/Off)</button>
+    </header>
+
+    <main>
+        <section id="hero">
+            <img src="obiwan.png" alt="Obi-Wan Kenobi" class="character-mentor">
+            <div class="welcome-box">
+                <p>"Der Code ist das, was dem Programmierer seine Macht verleiht."</p>
+            </div>
+        </section>
+
+        <section id="challenge-hub">
+            <div class="upload-container">
+                <img src="r2d2_c3po.png" alt="Droids" class="character-small">
+                <h2>Lade deine Challenge hoch</h2>
+                <input type="file" id="fileInput" accept=".js">
+            </div>
+
+            <div id="codeDisplayArea" class="hidden">
+                <h3>Vorschau: <span id="fileName">---</span></h3>
+                <pre><code id="codeOutput"></code></pre>
+                <button id="downloadBtn" class="jedi-button">Code exportieren (.js)</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StarWarsChallenge | Möge der Code mit dir sein.</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
