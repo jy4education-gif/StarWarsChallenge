@@ -17,17 +17,15 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    
-    /* Hintergrund-Bild wiederhergestellt */
-    /* Wichtig: Die Datei muss exakt 'background.png' heißen */
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.png');
+    /* Hintergrund-Bild mit Abdunkelung */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    background-color: #000; /* Fallback */
+    background-color: #000;
 }
 
-/* --- 2. Intro Overlay & Crawl --- */
+/* --- 2. Intro Overlay & Breitbild-Crawl --- */
 #intro-overlay {
     position: fixed;
     top: 0;
@@ -43,53 +41,74 @@ body {
     transition: opacity 2s ease-out, visibility 2s;
 }
 
-#skip-hint {
-    position: absolute;
-    bottom: 20px;
-    color: rgba(255, 232, 31, 0.5); /* Star Wars Gelb, leicht transparent */
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    pointer-events: none; /* Verhindert, dass der Text den Klick blockiert */
-}
-
 #intro-overlay.fade-out {
     opacity: 0;
     visibility: hidden;
 }
 
 .crawl-container {
-    width: 70%;
-    max-width: 900px;
+    /* Maximale Breite für echtes Breitbild-Feeling */
+    width: 95%; 
+    max-width: 2500px; 
     height: 100%;
-    perspective: 600px; /#
+    /* Perspektive erhöht, um die Verzerrung bei großer Breite zu harmonisieren */
+    perspective: 600px; 
 }
 
 .crawl-content {
     position: relative;
     top: 100%;
     transform-origin: 50% 100%;
-    /* Zeit auf 50s verkürzt */
-    animation: crawl-animation 50s linear forwards; 
+    animation: crawl-animation 50s linear forwards;
     color: var(--star-wars-yellow);
     text-align: center;
 }
 
-.crawl-content h1 { font-size: 4rem; text-transform: uppercase; margin-bottom: 0.5rem; }
-.crawl-content h2 { font-size: 2.5rem; text-transform: uppercase; margin-bottom: 3rem; }
-.crawl-content p { 
-    font-size: 2.2rem; 
-    line-height: 1.6; 
-    font-weight: 700; 
+/* Titelgrößen für Breitbild optimiert */
+.crawl-content h1 { 
+    font-size: 10rem;           
+    text-transform: uppercase; 
     margin-bottom: 1.5rem; 
+    text-shadow: 0 0 25px var(--star-wars-yellow); 
+}
+
+.crawl-content h2 { 
+    font-size: 7rem;           
+    text-transform: uppercase; 
+    margin-bottom: 8rem; 
+}
+
+/* Fließtext: Breit und wuchtig */
+.crawl-content p { 
+    font-size: 5rem;         
+    line-height: 1.4; 
+    font-weight: 900; 
+    margin-bottom: 5rem; 
+    text-align: center;
+    /* Verhindert unschöne Worttrennungen bei extrem breitem Viewport */
+    padding: 0 5%; 
+}
+
+/* Der Skip-Hinweis */
+#skip-hint {
+    position: absolute;
+    bottom: 30px;
+    color: rgba(255, 232, 31, 0.4);
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    pointer-events: none;
 }
 
 @keyframes crawl-animation {
-    0% { transform: rotateX(30deg) translateY(0); }
-    100% { transform: rotateX(30deg) translateY(-4500px); }
+    0% { transform: rotateX(20deg) translateY(0); }
+    100% { 
+        /* Weiter erhöht, damit der massive Block sicher aus dem Bild läuft */
+        transform: rotateX(20deg) translateY(-10000px); 
+    }
 }
 
-/* --- 3. UI Elemente (Header & Buttons) --- */
+/* --- 3. UI Elemente (Landingpage) --- */
 header {
     width: 100%;
     text-align: center;
@@ -116,12 +135,19 @@ header {
     font-weight: bold;
     text-transform: uppercase;
     transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
 .jedi-button:hover {
     background: var(--jedi-blue);
     color: white;
     box-shadow: 0 0 20px var(--jedi-blue);
+}
+
+#start-btn {
+    font-size: 2.5rem;
+    padding: 25px 60px;
+    z-index: 10000;
 }
 
 /* --- 4. Content Sektionen --- */
@@ -169,5 +195,13 @@ header {
     border-left: 5px solid var(--jedi-blue);
 }
 
-/* Hilfsklassen */
+/* --- 5. Footer & Hilfsklassen --- */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 2rem 0;
+    color: white;
+    font-size: 0.9rem;
+}
+
 .hidden { display: none !important; }
