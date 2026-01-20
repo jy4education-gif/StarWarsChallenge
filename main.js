@@ -35,7 +35,7 @@ startBtn.addEventListener('click', () => {
     }, 5000);
 
     // Automatische Beendigung nach dem Crawl (jetzt auf 25s synchronisiert)
-    setTimeout(fadeOutIntro, 25000);
+    setTimeout(fadeOutIntro, 30000);
 });
 
 /**
