@@ -52,7 +52,7 @@ body {
     width: 70%;
     max-width: 900px;
     height: 100%;
-    perspective: 400px;
+    perspective: 600px; /#
 }
 
 .crawl-content {
@@ -75,8 +75,8 @@ body {
 }
 
 @keyframes crawl-animation {
-    0% { transform: rotateX(25deg) translateY(0); }
-    100% { transform: rotateX(25deg) translateY(-4500px); }
+    0% { transform: rotateX(30deg) translateY(0); }
+    100% { transform: rotateX(30deg) translateY(-4500px); }
 }
 
 /* --- 3. UI Elemente (Header & Buttons) --- */

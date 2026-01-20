@@ -27,7 +27,7 @@ startBtn.addEventListener('click', () => {
     introMusic.play().catch(err => console.error("Autoplay verhindert:", err));
 
     // Automatische Beendigung nach dem Crawl
-    setTimeout(fadeOutIntro, 30000);
+    setTimeout(fadeOutIntro, 25000);
 });
 
 function fadeOutIntro() {
