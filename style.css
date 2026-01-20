@@ -8,7 +8,7 @@
     --code-bg: #1e1e1e;
 }
 
-body {
+bbody {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -17,11 +17,14 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    /* Hintergrund-Bild */
+    
+    /* Hintergrund-Bild wiederhergestellt */
+    /* Wichtig: Die Datei muss exakt 'background.jpg' heißen */
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    background-color: #000; /* Fallback */
 }
 
 /* --- 2. Intro Overlay & Crawl --- */
