@@ -9,6 +9,9 @@ const crawlContainer = document.querySelector('.crawl-container');
 const introMusic = document.getElementById('introTheme');
 const forceMusic = document.getElementById('forceTheme');
 
+// NEU: Selektor für den Skip-Hinweis
+const skipHint = document.getElementById('skip-hint'); 
+
 const fileInput = document.getElementById('fileInput');
 const codeOutput = document.getElementById('codeOutput');
 const codeDisplayArea = document.getElementById('codeDisplayArea');
@@ -26,10 +29,18 @@ startBtn.addEventListener('click', () => {
     // Musik starten
     introMusic.play().catch(err => console.error("Autoplay verhindert:", err));
 
-    // Automatische Beendigung nach dem Crawl
+    // NEU: Erscheinen des Skip-Hinweises nach 5 Sekunden Verzögerung
+    setTimeout(() => {
+        if (skipHint) skipHint.classList.remove('hidden');
+    }, 5000);
+
+    // Automatische Beendigung nach dem Crawl (jetzt auf 25s synchronisiert)
     setTimeout(fadeOutIntro, 25000);
 });
 
+/**
+ * Funktion zum Ausblenden des Intros
+ */
 function fadeOutIntro() {
     introOverlay.classList.add('fade-out');
     
@@ -39,12 +50,15 @@ function fadeOutIntro() {
         } else {
             introMusic.pause();
             clearInterval(fadeAudio);
-            forceMusic.play();
+            
+            // Startet die Hintergrundmusik der Landingpage
+            forceMusic.play().catch(e => console.log("Audio-Interaktion erforderlich")); 
             forceMusic.volume = 0.5;
         }
     }, 200);
 }
 
+// Ermöglicht das Überspringen des Intros durch Doppelklick
 introOverlay.addEventListener('dblclick', fadeOutIntro);
 
 musicToggleBtn.addEventListener('click', () => {

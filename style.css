@@ -43,6 +43,16 @@ body {
     transition: opacity 2s ease-out, visibility 2s;
 }
 
+#skip-hint {
+    position: absolute;
+    bottom: 20px;
+    color: rgba(255, 232, 31, 0.5); /* Star Wars Gelb, leicht transparent */
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    pointer-events: none; /* Verhindert, dass der Text den Klick blockiert */
+}
+
 #intro-overlay.fade-out {
     opacity: 0;
     visibility: hidden;
