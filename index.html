@@ -27,7 +27,11 @@
             <div class="upload-container">
                 <img src="r2d2_c3po.png" alt="Droids" class="character-small">
                 <h2>Lade deine Challenge hoch</h2>
-                <input type="file" id="fileInput" accept=".js">
+                <input type="file" id="fileInput" accept=".js" hidden>
+                <label for="fileInput" class="jedi-button custom-file-upload">
+                    Datei auswählen
+                </label>
+                <p id="file-chosen">Keine Datei ausgewählt</p>
             </div>
 
             <div id="codeDisplayArea" class="hidden">

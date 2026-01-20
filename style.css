@@ -1,61 +1,187 @@
-/* Layout-Optimierung */
-main {
-    max-width: 1000px;
-    width: 90%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Zwei Spalten für bessere Balance */
-    gap: 2rem;
-    padding: 2rem;
+/* --- 1. Variablen & Grundsetup --- */
+:root {
+    --jedi-blue: #00AEEF;
+    --imperial-white: #ffffff;
+    --droid-grey: #f2f2f2;
+    --dark-text: #2c3e50;
+    --code-bg: #1e1e1e; /* VS Code Dunkel */
 }
 
-/* Obi-Wan oben links als Mentor */
-#hero {
-    grid-column: 1 / -1; /* Nimmt die ganze Breite ein */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--imperial-white);
+    color: var(--dark-text);
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
     align-items: center;
-    background: #f9f9f9;
-    padding: 1rem;
-    border-radius: 50px 15px 15px 50px; /* Abgerundet für Comic-Stil */
-    border-left: 5px solid var(--jedi-blue);
+    min-height: 100vh;
 }
 
-.character-mentor {
-    height: 120px; /* Deutlich kleiner */
-    margin-right: 20px;
-}
-
-/* Droiden & Upload Bereich */
-.upload-container {
-    background: white;
-    border: 2px solid var(--droid-grey);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    padding: 2rem;
+/* --- 2. Header & Titel --- */
+header {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 3rem 0 2rem 0;
+    text-align: center;
+}
+
+.glow-text {
+    color: var(--jedi-blue);
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--jedi-blue);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    display: inline-block;
+    
+    /* Der gewünschte Jedi-Glow */
+    text-shadow: 
+        0 0 7px var(--jedi-blue),
+        0 0 15px rgba(0, 174, 239, 0.4);
+    
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.glow-text:hover {
+    text-shadow: 
+        0 0 12px var(--jedi-blue),
+        0 0 25px var(--jedi-blue);
+}
+
+/* --- 3. Buttons --- */
+.jedi-button {
+    background-color: transparent;
+    border: 2px solid var(--jedi-blue);
+    color: var(--jedi-blue);
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+}
+
+.jedi-button:hover {
+    background-color: var(--jedi-blue);
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 174, 239, 0.6);
+    transform: translateY(-2px);
+}
+
+/* --- 4. Mentor Bereich (Hero) --- */
+#hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin: 40px 0 60px 0;
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+}
+
+.character-mentor {
+    height: 250px; /* Skalierung angepasst */
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+    transition: transform 0.5s ease;
+}
+
+.character-mentor:hover {
+    transform: scale(1.05);
+}
+
+.welcome-box p {
+    font-size: 2rem; /* Große, wirkungsvolle Schrift */
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark-text);
+    max-width: 850px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.welcome-box p::before {
+    content: "»";
+    color: var(--jedi-blue);
+    font-size: 3.5rem;
+    margin-right: 15px;
+    vertical-align: sub;
+    font-style: normal;
+}
+
+/* --- 5. Challenge Hub (Upload & Display) --- */
+#challenge-hub {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 900px;
+    margin-bottom: 100px;
+}
+
+.upload-container {
+    background: white;
+    padding: 50px 30px;
+    border-radius: 25px;
+    text-align: center;
+    border: 2px dashed var(--jedi-blue);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.upload-container:hover {
+    border-style: solid;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
 }
 
 .character-small {
-    height: 200px; /* Skalierung korrigiert */
-    margin-bottom: 1rem;
+    height: 200px;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.05));
 }
 
-/* Code Display Bereich */
 #codeDisplayArea {
-    grid-column: 2; /* Rechts neben dem Upload */
+    margin-top: 40px;
     width: 100%;
-    height: 400px;
-    background: #1e1e1e; /* VS Code Look */
-    border-radius: 8px;
+    background: var(--code-bg);
+    color: #f8f8f2;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    overflow-x: auto;
+    border-left: 5px solid var(--jedi-blue);
+}
+
+#codeDisplayArea h3 {
+    margin-top: 0;
+    color: var(--jedi-blue);
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+pre {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* --- 6. Footer & Hilfsklassen --- */
+footer {
+    margin-top: auto;
+    padding: 2rem;
+    color: #999;
     font-size: 0.9rem;
 }
 
-/* Titel-Styling */
-.glow-text {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #1a1a1a;
+.hidden { 
+    display: none !important; 
 }
