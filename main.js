@@ -1,41 +1,84 @@
+/**
+ * StarWarsChallenge - Main Control Logic
+ */
+
+// --- 1. Element-Selektoren ---
+const introOverlay = document.getElementById('intro-overlay');
+const startBtn = document.getElementById('start-btn');
+const crawlContainer = document.querySelector('.crawl-container');
+const introMusic = document.getElementById('introTheme');
+const forceMusic = document.getElementById('forceTheme');
+
 const fileInput = document.getElementById('fileInput');
 const codeOutput = document.getElementById('codeOutput');
 const codeDisplayArea = document.getElementById('codeDisplayArea');
 const fileNameSpan = document.getElementById('fileName');
-const music = document.getElementById('forceTheme');
-const musicBtn = document.getElementById('musicToggle');
+const fileChosenText = document.getElementById('file-chosen');
+const downloadBtn = document.getElementById('downloadBtn');
+const musicToggleBtn = document.getElementById('musicToggle');
 
-// 1. Musik-Steuerung
-musicBtn.addEventListener('click', () => {
-    if (music.paused) {
-        music.play();
-        musicBtn.textContent = "Mute Theme";
+// --- 2. Intro & Musik-Management ---
+
+startBtn.addEventListener('click', () => {
+    startBtn.style.display = 'none';
+    crawlContainer.classList.remove('hidden');
+    
+    // Musik starten
+    introMusic.play().catch(err => console.error("Autoplay verhindert:", err));
+
+    // Automatische Beendigung nach dem Crawl
+    setTimeout(fadeOutIntro, 55000);
+});
+
+function fadeOutIntro() {
+    introOverlay.classList.add('fade-out');
+    
+    const fadeAudio = setInterval(() => {
+        if (introMusic.volume > 0.1) {
+            introMusic.volume -= 0.1;
+        } else {
+            introMusic.pause();
+            clearInterval(fadeAudio);
+            forceMusic.play();
+            forceMusic.volume = 0.5;
+        }
+    }, 200);
+}
+
+introOverlay.addEventListener('dblclick', fadeOutIntro);
+
+musicToggleBtn.addEventListener('click', () => {
+    if (forceMusic.paused) {
+        forceMusic.play();
+        musicToggleBtn.textContent = "Mute Theme";
     } else {
-        music.pause();
-        musicBtn.textContent = "Play Theme";
+        forceMusic.pause();
+        musicToggleBtn.textContent = "Play Theme";
     }
 });
 
-// 2. File Upload Handling
+// --- 3. Datei-Operationen ---
+
 fileInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
-    if (file && file.name.endsWith('.js')) {
-        const reader = new FileReader();
-        
-        reader.onload = (e) => {
-            codeOutput.textContent = e.target.result;
-            fileNameSpan.textContent = file.name;
-            codeDisplayArea.classList.remove('hidden');
-        };
-        
-        reader.readAsText(file);
-    } else {
-        alert("Bitte lade eine gültige .js Datei hoch.");
+    
+    if (file) {
+        fileChosenText.textContent = file.name;
+        if (file.name.endsWith('.js')) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                codeOutput.textContent = e.target.result;
+                fileNameSpan.textContent = file.name;
+                codeDisplayArea.classList.remove('hidden');
+            };
+            reader.readAsText(file);
+        } else {
+            alert("Bitte lade eine gültige .js Datei hoch.");
+        }
     }
 });
 
-// 3. Download Funktion (Blob)
-document.getElementById('downloadBtn').addEventListener('click', () => {
+downloadBtn.addEventListener('click', () => {
     const code = codeOutput.textContent;
     const blob = new Blob([code], { type: 'text/javascript' });
     const url = URL.createObjectURL(blob);
