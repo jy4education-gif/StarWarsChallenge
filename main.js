@@ -35,7 +35,7 @@ startBtn.addEventListener('click', () => {
     }, 5000);
 
     // Automatische Beendigung nach dem Crawl (jetzt auf 25s synchronisiert)
-    setTimeout(fadeOutIntro, 30000);
+    setTimeout(fadeOutIntro, 50000);
 });
 
 /**
@@ -43,7 +43,7 @@ startBtn.addEventListener('click', () => {
  */
 function fadeOutIntro() {
     introOverlay.classList.add('fade-out');
-    
+    document.body.classList.add('main-view-active');
     const fadeAudio = setInterval(() => {
         if (introMusic.volume > 0.1) {
             introMusic.volume -= 0.1;
