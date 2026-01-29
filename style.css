@@ -126,7 +126,7 @@ header {
 }
 
 .upload-container {
-    background: white; /* Weißer Hintergrund für Padawane-Lesbarkeit */
+    background: white; /* Weißer Hintergrund für Lesbarkeit */
     color: var(--dark-text);
     padding: 40px;
     border-radius: 20px;
